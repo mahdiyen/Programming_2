@@ -1,0 +1,13 @@
+2023-06-28 12:40:41,977 -INFO - Data Processor started. Monitoring input directory... 
+2023-06-28 12:40:41,978 -INFO - Found new data file: sensor.csv 
+2023-06-28 12:40:41,978 -INFO - Loaded the file: sensor.csv 
+2023-06-28 12:40:41,978 -INFO - data: ../data_sensor/input\sensor.csv 
+2023-06-28 12:40:59,392 -INFO - model persisted in a .pkl file 
+2023-06-28 12:41:05,887 -INFO - Received predictions 
+2023-06-28 12:41:06,410 -INFO - Saving image: 2023-06-sensor_01.png 
+2023-06-28 12:41:06,827 -INFO - Saving image: 2023-06-sensor_02.png 
+2023-06-28 12:41:07,228 -INFO - Saving image: 2023-06-sensor_03.png 
+2023-06-28 12:41:07,776 -INFO - Saving image: 2023-06-sensor_04.png 
+2023-06-28 12:41:07,776 -INFO - Processed data file: sensor.csv 
+2023-06-28 12:41:07,776 -INFO - Removed data file: sensor.csv 
+2023-06-28 12:41:37,821 -INFO - No new data files found. Resuming listening. 
