@@ -1,0 +1,7 @@
+{
+  "input_directory": "/data_sensor/input",
+  "output_directory": "/data_sensor/output",
+  "img_directory": "/data_sensor/image",
+  "sensors_to_draw": ["sensor_01", "sensor_02","sensor_03", "sensor_04"],
+  "check_interval": 30
+}
