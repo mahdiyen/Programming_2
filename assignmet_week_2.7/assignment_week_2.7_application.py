@@ -18,7 +18,19 @@ from sensor_related import ModelSaver
 from sensor_related import PlotSensor
 
 class DataProcessor:
+    '''
+    This class is used to check the input directory and do the following steps:
+    1- If there is a new .csv file, do preprocess the file,
+    2- Use the IsolationForest method to find anomalies,
+    3- Evaluate the model on test and validation data,
+    4- Plot with the given sensor names and save on image output directory.
+    5- Move the file from input directory to output directory.
+    Also, logging method is used to debugging. the logging file is saved on output directory.
+    '''
     def __init__(self, config_file):
+        '''
+        parameter: config_file: all information regarding the directories and the sensors to draw are in it
+        '''
         self.config = self.load_config(config_file)
         self.input_dir = self.config['input_directory']
         self.output_dir = self.config['output_directory']
@@ -28,11 +40,17 @@ class DataProcessor:
         self.logger = self.setup_logger()
 
     def load_config(self, config_file):
+        '''
+        This method is used to load the config file
+        '''
         with open(config_file) as f:
             config = json.load(f)
         return config
 
     def setup_logger(self):
+        '''
+        This method sets all options regarding the logger like name of file, direction, its level, format ...
+        '''
         logger = logging.getLogger('DataProcessor')
         logger.setLevel(logging.INFO)
 
@@ -49,7 +67,8 @@ class DataProcessor:
 
     def get_new_data_files(self):
         '''
-        It check if there are new data
+        It check if there are new data file and add in a list
+        returns: The list of new files
         '''
         files = []
         for file in os.listdir(self.input_dir):
@@ -58,6 +77,10 @@ class DataProcessor:
         return files
 
     def process_data_file(self, file):
+        '''
+        This method do all preprocess methods, modelling, and plotting of a given file and save the plot
+
+        '''
         self.logger.info(f'Found new data file: {file}')
 
         try:
@@ -89,6 +112,11 @@ class DataProcessor:
 
 
     def process_data_files(self):
+        '''
+        This method is to manage all new files, between every two files use time.sleep to stop for the given seconds.
+        If in the input folder there is no new file, the runnig will be stopped by 'break'. 
+        If we remove the 'break' command, after the time.sleep interval it again checkes the input directory! 
+        '''
         self.logger.info('Data Processor started. Monitoring input directory...')
 
         while True:
@@ -102,16 +130,10 @@ class DataProcessor:
 
             time.sleep(self.check_interval)
 
-    # def save_predictions(self, file, data, predictions):
-    #     timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    #     output_file = f'predictions_{file}_{timestamp}.csv'
-    #     output_path = os.path.join(self.output_dir, output_file)
-
-    #     data['predictions'] = predictions
-    #     data.to_csv(output_path, index=False)
-    #     self.logger.info(f'Saving predictions: {output_file}')
-
     def generate_sensor_images(self, data):
+        '''
+        This method is to generate the image of the plots on the image directory
+        '''
         for sensor_name in self.sensors_to_draw:
             plot_sensor= PlotSensor(sensor_name, data)
             plot_sensor.broken_recovery_normal()
@@ -127,6 +149,10 @@ class DataProcessor:
             self.logger.info(f'Saving image: {image_file}')
 
     def remove_data_file(self, file):
+        '''
+        This method is to move the processed file from input directory to output directory.
+        It can be removed. But here we needed the data, so, hust moved
+        '''
         try:
             file_path = os.path.join(self.input_dir, file)
             move(file_path, os.path.join(self.output_dir, file))
