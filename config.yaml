@@ -1,1 +1,3 @@
-dsst : 'dSST.csv'
+dsst : '../../data/dSST.csv'
+sensor : '../../data/sensor.csv'
+bacilli : '/data/dataprocessing/interproscan/all_bacilli.tsv'
