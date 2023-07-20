@@ -17,6 +17,10 @@ from sensor_related import DataPreProcessor
 from sensor_related import ModelSaver
 from sensor_related import PlotSensor
 
+# Does this file contain the same classes as the Notebook?
+# I'm assuming it does, so I'm focussing on this file.
+
+
 class DataProcessor:
     '''
     This class is used to check the input directory and do the following steps:
@@ -92,10 +96,14 @@ class DataProcessor:
             preprocessor = DataPreProcessor(self.output_dir, data)
             # preprocessed_data = preprocessor.all_preprocess()
 
+            # I'm not sure what the user of this is in your general application flow...
+            # It seems you are training a model while the model should 
+            # already be trained and persisted...
             model_saver = ModelSaver('model.pkl', self.output_dir, preprocessor)
 
             model_saver.split()
             model_saver.modeling(IsolationForest, IsolationForest())
+
             self.logger.info('model persisted in a .pkl file')
 
             predictions = model_saver.prediction_evaluation()

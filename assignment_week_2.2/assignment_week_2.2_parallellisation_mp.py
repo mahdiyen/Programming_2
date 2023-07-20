@@ -11,11 +11,12 @@ ssl._create_default_https_context = ssl._create_unverified_context
 Entrez.email = 'm.nabilou@st.hanze.nl' 
 
 #using the Entrez module from the Biopython library to perform a database link query.
+
 file = Entrez.elink(dbfrom="pubmed",
                    db="pmc",
                    LinkName="pubmed_pmc_refs",
                    id="30049270",
-                   api_key='ddd9478cf718e4f5eb5150e7de20f7679d08')
+                   api_key='ddd9478cf718e4f5eb5150e7de20f7679d08') # should not have your api-key in github
 results = Entrez.read(file)
 print ('results= ', results)
 print ('###############################')
@@ -55,4 +56,5 @@ if __name__ == '__main__':
     article_details_with_mp(reference=references[0:9])
     end_time = time.time()
     execution_time = end_time - start_time
+    # You should not concatenate strings; use formatted strings.
     print("Execution time with multiprocessing:", execution_time, "seconds")

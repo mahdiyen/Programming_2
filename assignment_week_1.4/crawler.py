@@ -3,10 +3,12 @@ from bs4 import BeautifulSoup
 import ssl
 import re
 
+# I am missing the `__iter__` of `__next__` in this class (to change it into an iterable)
 class Crawler:
     def __init__(self):
         self.url = "https://sport050.nl/sportaanbieders/alle-aanbieders/"
-        
+
+    # Good observeration that this method could be made static
     @staticmethod
     def hack_ssl():
         """ ignores the certificate errors"""
