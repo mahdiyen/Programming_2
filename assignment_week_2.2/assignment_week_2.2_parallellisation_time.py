@@ -2,6 +2,11 @@ import time
 from Bio import Entrez
 import ssl
 
+# As a result of your design, you have a lot of duplicate code.
+# Would have been better is you used the same code base for both
+# tests and have the differences abstracted away to another place.
+
+
 # the next two lines are needed to create an environment in which the 
 # ssl doesn't complain about non-existing public keys...
 ssl._create_default_https_context = ssl._create_unverified_context

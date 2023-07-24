@@ -6,12 +6,14 @@ import pandas as pd
 PORT = 8080
 FILENAME = '../../data/dSST.csv'
 
+# Good realisation
+# I just don't see the relation between this file and the dataHandler.py...
 class DataProvider:
     '''
     The class is created to handle the data and generate the JSON response
     '''
     def __init__(self):
-        FILENAME = '../../data/dSST.csv'
+        FILENAME = '../../data/dSST.csv' # you already had this defined (7 lines up)
         self.data = pd.read_csv(FILENAME)
 
     def get_data(self, year_range=None):

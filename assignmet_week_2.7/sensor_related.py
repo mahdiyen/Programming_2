@@ -71,12 +71,13 @@ class DataPreProcessor:
         return (self.data)
     
 
-
+# I'm not sure what the use of this class is in your 
+# application flow. 
 class ModelSaver:
     '''
     THis class is to fit a model, persist it, and evaluate the model
     '''
-    def __init__(self, model_name, output_dir, DataPreProcessor):
+    def __init__(self, model_name, output_dir, DataPreProcessor): # Don't use CamelCasing in variable names in Python
         
         self.model_name = model_name # to persist the model
         self.output_dir = output_dir

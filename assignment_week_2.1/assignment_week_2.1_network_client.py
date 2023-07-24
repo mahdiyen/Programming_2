@@ -1,5 +1,6 @@
 import asyncio
 import aiohttp
+# Good
 
 class NetworkClient:
     def __init__(self, base_url):
